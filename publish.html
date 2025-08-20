@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Publish a Website - Enhanced Dark Theme</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #1a1a2e);
+            background-size: 400% 400%;
+            color: #e6e6e6;
+            line-height: 1.6;
+            animation: gradientBG 15s ease infinite;
+            position: relative;
+            overflow-x: hidden;
+        }
+        /* Enhanced animated background elements */
+        
+        .bg-bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .bg-bubbles li {
+            position: absolute;
+            list-style: none;
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(100, 100, 255, 0.15);
+            bottom: -160px;
+            border-radius: 50%;
+            animation: square 25s infinite;
+            transition-timing-function: linear;
+        }
+        
+        .bg-bubbles li:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .bg-bubbles li:nth-child(2) {
+            left: 20%;
+            animation-delay: 2s;
+            animation-duration: 17s;
+            width: 60px;
+            height: 60px;
+        }
+        
+        .bg-bubbles li:nth-child(3) {
+            left: 25%;
+            animation-delay: 4s;
+            width: 100px;
+            height: 100px;
+        }
+        
+        .bg-bubbles li:nth-child(4) {
+            left: 40%;
+            animation-delay: 0s;
+            animation-duration: 22s;
+            width: 120px;
+            height: 120px;
+        }
+        
+        .bg-bubbles li:nth-child(5) {
+            left: 70%;
+            animation-delay: 3s;
+            width: 70px;
+            height: 70px;
+        }
+        
+        .bg-bubbles li:nth-child(6) {
+            left: 80%;
+            animation-delay: 2s;
+            width: 90px;
+            height: 90px;
+        }
+        
+        .bg-bubbles li:nth-child(7) {
+            left: 32%;
+            animation-delay: 6s;
+            width: 150px;
+            height: 150px;
+        }
+        
+        .bg-bubbles li:nth-child(8) {
+            left: 55%;
+            animation-delay: 8s;
+            animation-duration: 18s;
+            width: 40px;
+            height: 40px;
+        }
+        
+        .bg-bubbles li:nth-child(9) {
+            left: 25%;
+            animation-delay: 9s;
+            animation-duration: 20s;
+            width: 20px;
+            height: 20px;
+        }
+        
+        .bg-bubbles li:nth-child(10) {
+            left: 90%;
+            animation-delay: 11s;
+            width: 60px;
+            height: 60px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71, #5c6bc0, #66bb6a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 1s ease;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+        
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: rgba(30, 30, 46, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+            width: 350px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            border: 1px solid rgba(100, 100, 255, 0.2);
+            position: relative;
+        }
+        
+        .card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        
+        .card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        
+        .card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        /* Enhanced card hover effects */
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(92, 107, 192, 0.1), rgba(57, 73, 171, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .card:hover::before {
+            opacity: 1;
+        }
+        /* Featured card with special animation */
+        
+        .featured-card {
+            position: relative;
+            z-index: 2;
+            animation: pulseGlow 2s infinite ease-in-out, fadeInUp 0.8s ease 0.4s forwards;
+        }
+        
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff8a00, #e52e71, #5c6bc0, #66bb6a);
+            border-radius: 16px;
+            z-index: -1;
+            animation: rotateGradient 3s linear infinite;
+            opacity: 0.7;
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(135deg, #ff8a00, #e52e71);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 3;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            animation: bounce 2s infinite;
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #5c6bc0, #3949ab);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-header i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+            vertical-align: middle;
+        }
+        
+        .card-body {
+            padding: 30px;
+        }
+        
+        .card-body ul {
+            list-style-type: none;
+            margin: 15px 0;
+        }
+        
+        .card-body li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.3s ease;
+        }
+        
+        .card-body li:hover {
+            transform: translateX(5px);
+        }
+        
+        .card-body li:before {
+            content: "✓";
+            color: #7986cb;
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+        
+        .card-footer {
+            padding: 20px;
+            text-align: center;
+            background: rgba(57, 73, 171, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #5c6bc0, #3949ab);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(57, 73, 171, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(57, 73, 171, 0.7);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .steps-container {
+            background: rgba(30, 30, 46, 0.9);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            animation: fadeIn 1s ease 0.8s forwards;
+            border: 1px solid rgba(100, 100, 255, 0.2);
+        }
+        
+        .steps-container h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            color: #e6e6e6;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .steps-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #5c6bc0, #3949ab);
+            border-radius: 2px;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 40px;
+            align-items: flex-start;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+        
+        .step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #5c6bc0, #3949ab);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-right: 25px;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(57, 73, 171, 0.5);
+            transition: transform 0.3s ease;
+        }
+        
+        .step:hover .step-number {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #e6e6e6;
+            display: flex;
+            align-items: center;
+        }
+        
+        .step-title i {
+            margin-right: 10px;
+            color: #7986cb;
+        }
+        /* Animated progress bar for steps */
+        
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #5c6bc0, #3949ab);
+            animation: fillProgress 1.5s ease forwards;
+        }
+        
+        .comparison {
+            background: rgba(30, 30, 46, 0.9);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            animation: fadeIn 1s ease 1s forwards;
+            border: 1px solid rgba(100, 100, 255, 0.2);
+        }
+        
+        .comparison h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            color: #e6e6e6;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .comparison h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #5c6bc0, #3949ab);
+            border-radius: 2px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        th,
+        td {
+            padding: 18px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e6e6e6;
+            transition: background-color 0.3s ease;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #5c6bc0, #3949ab);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        
+        tr {
+            transition: background-color 0.3s ease;
+        }
+        
+        tr:hover {
+            background-color: rgba(57, 73, 171, 0.1);
+        }
+        
+        tr:hover td {
+            transform: translateX(5px);
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px 15px 0 0;
+            backdrop-filter: blur(5px);
+        }
+        /* Floating animated box */
+        
+        .floating-box {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #5c6bc0, #3949ab);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+            animation: float 3s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-box:hover {
+            animation: pulse 0.5s infinite alternate;
+            transform: scale(1.05);
+        }
+        /* SEDO (Search Engine Direct Optimization) box */
+        
+        .seo-box {
+            background: rgba(30, 30, 46, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 40px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(100, 100, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .seo-box h3 {
+            color: #e6e6e6;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .seo-box h3 i {
+            margin-right: 10px;
+            color: #7986cb;
+        }
+        
+        .seo-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .seo-tag {
+            background: rgba(57, 73, 171, 0.3);
+            color: #e6e6e6;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            animation: tagPulse 4s infinite;
+            transition: transform 0.3s ease;
+        }
+        
+        .seo-tag:hover {
+            transform: translateY(-3px);
+        }
+        /* New Animations */
+        
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        @keyframes square {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 50%;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 15px rgba(92, 107, 192, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(92, 107, 192, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 15px rgba(92, 107, 192, 0.5);
+            }
+        }
+        
+        @keyframes rotateGradient {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+        
+        @keyframes bounce {
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @keyframes fillProgress {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.05);
+            }
+        }
+        
+        @keyframes tagPulse {
+            0%,
+            100% {
+                background: rgba(217, 221, 243, 0.3);
+            }
+            50% {
+                background: rgba(161, 166, 196, 0.6);
+            }
+        }
+        /* New enhanced animations */
+        
+        @keyframes textShine {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+        
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+            75% {
+                transform: translateX(-5px);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes flip {
+            0% {
+                transform: perspective(400px) rotateY(0);
+            }
+            50% {
+                transform: perspective(400px) rotateY(10deg);
+            }
+            100% {
+                transform: perspective(400px) rotateY(0);
+            }
+        }
+        
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px rgba(71, 74, 91, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(127, 129, 145, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(92, 107, 192, 0.5);
+            }
+        }
+        /* Text animation for header */
+        
+        .animated-text {
+            background: linear-gradient(to right, #ff8a00, #e52e71, #5c6bc0, #66bb6a, #ff8a00);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShine 5s linear infinite;
+        }
+        /* Enhanced particle effects */
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+            opacity: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .card {
+                width: 100%;
+                max-width: 350px;
+            }
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+            .step-number {
+                margin-bottom: 20px;
+                margin-right: 0;
+            }
+            .step-title {
+                justify-content: center;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            .floating-box {
+                bottom: 20px;
+                right: 20px;
+                left: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Animated background elements -->
+    <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <header>
+        <div class="container">
+            <h1>How to Publish a Website</h1>
+            <p class="subtitle">A comprehensive guide to taking your website from local development to live on the internet
+                <br>
+                <br>-Hetvi Parmar
+
+            </p>
+
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card-container">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-server"></i> Traditional Hosting
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Upload files via FTP/SFTP</li>
+                        <li>Use cPanel or similar interface</li>
+                        <li>Manage your own server</li>
+                        <li>Full control over configuration</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-cloud"></i> Cloud Platforms
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Services like Netlify, Vercel</li>
+                        <li>Connect to Git repository</li>
+                        <li>Automatic deployments</li>
+                        <li>Free tiers available</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fab fa-github"></i> GitHub Pages
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Free hosting for static sites</li>
+                        <li>Integrated with GitHub</li>
+                        <li>Simple setup process</li>
+                        <li>Custom domain support</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="steps-container">
+            <h2>Steps to Publish Your Website</h2>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3 class="step-title"><i class="fas fa-check-circle"></i> Choose a Hosting Provider</h3>
+                    <p>Select a web hosting service that fits your needs. Options include shared hosting, VPS, cloud hosting, or specialized platforms like Netlify or Vercel for static sites.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3 class="step-title"><i class="fas fa-check-circle"></i> Register a Domain Name</h3>
+                    <p>Choose and register a unique domain name for your website. Many hosting providers offer domain registration services, or you can use specialized registrars.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3 class="step-title"><i class="fas fa-check-circle"></i> Prepare Your Website Files</h3>
+                    <p>Ensure all your HTML, CSS, JavaScript, and asset files are organized. Test your website locally to fix any issues before uploading.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3 class="step-title"><i class="fas fa-check-circle"></i> Upload Your Files</h3>
+                    <p>Use FTP, SFTP, or your hosting provider's file manager to upload your website files to the server. Typically, you'll upload to the public_html or www directory.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3 class="step-title"><i class="fas fa-check-circle"></i> Test Your Live Website</h3>
+                    <p>After uploading, thoroughly test your website using the live URL. Check all pages, links, forms, and functionality to ensure everything works correctly.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison">
+            <h2>Hosting Option Comparison</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Cost</th>
+                        <th>Ease of Use</th>
+                        <th>Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><i class="fas fa-server"></i> Traditional Hosting</td>
+                        <td>$3-$10/month</td>
+                        <td>Medium</td>
+                        <td>Business websites, WordPress</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-cloud"></i> Cloud Platforms</td>
+                        <td>Free to $20+/month</td>
+                        <td>Easy</td>
+                        <td>Static sites, JAMstack apps</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fab fa-github"></i> GitHub Pages</td>
+                        <td>Free</td>
+                        <td>Easy</td>
+                        <td>Personal projects, portfolios</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-hdd"></i> VPS Hosting</td>
+                        <td>$5-$50+/month</td>
+                        <td>Hard</td>
+                        <td>Developers, large applications</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Website Publishing Guide | This is a demonstration page for educational purposes</p>
+        </div>
+    </footer>
+
+    <script>
+        // Add scroll animation for steps
+        document.addEventListener('DOMContentLoaded', function() {
+            const steps = document.querySelectorAll('.step');
+
+            function checkVisibility() {
+                steps.forEach(step => {
+                    const position = step.getBoundingClientRect();
+
+                    // If the step is in the viewport
+                    if (position.top < window.innerHeight - 100) {
+                        step.classList.add('visible');
+                    }
+                });
+            }
+
+            // Check on initial load
+            checkVisibility();
+
+            // Check on scroll
+            window.addEventListener('scroll', checkVisibility);
+        });
+    </script>
+</body>
+
+</html>
